@@ -34,5 +34,18 @@ namespace ECommerce.WebApp.Pages
                 ErrorMessage = ex.Message;
             }
         }
+
+        public static string DisplayOrderStatus(OrderStatus status){
+            if(status == OrderStatus.None){
+                return "未知";
+            }
+
+            var statusString = status.ToString();
+            return statusString.Replace(",", "，")
+                               .Replace("Submitted", "已提交")
+                               .Replace("Packed", "打包完成")
+                               .Replace("Payed", "支付完成")
+                               .Replace("Shipped", "已发货");
+        }
     }
 }

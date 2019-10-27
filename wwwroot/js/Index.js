@@ -18,7 +18,7 @@ var IndexPage = {
             var product = JSON.parse(data);
 
             Common.sendPost("/api/basket", data);
-            Common.sendProductAdded('Product ' + product.Name + ' added to the basket.');
+            Common.sendProductAdded('商品 ' + product.Name + ' 已添加到购物车。');
         });
     }
 };

@@ -1,7 +1,7 @@
 ﻿@page
 @model ECommerce.WebApp.Pages.OrdersModel
 @{
-    ViewData["Title"] = "Orders";
+    ViewData["Title"] = "订单";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
@@ -12,8 +12,8 @@
     {
         <br />
         <div class="alert alert-danger" role="alert">
-            <h4 class="alert-heading">Error :(</h4>
-            <p>Error has occured while processing the page. Please try again.</p>
+            <h4 class="alert-heading">错误 :(</h4>
+            <p>处理页面期间发生错误，请尝试</p>
             <hr>
             <p class="mb-0">@Model.ErrorMessage</p>
         </div>
@@ -23,8 +23,8 @@
     {
         <br />
         <div class="alert alert-secondary" role="alert">
-            <h4 class="alert-heading">No orders yet!</h4>
-            <p>Please make some purchases first.</p>
+            <h4 class="alert-heading">暂无订单。</h4>
+            <p>请先在网站上买一些东西吧。</p>
         </div>
     }
 
@@ -37,9 +37,9 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Customer ID</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">顾客 ID</th>
+                    <th scope="col">状态</th>
+                    <th scope="col">总金额</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,8 +49,8 @@
                     <tr>
                         <th scope="row">@item.OrderId</th>
                         <td>@item.CustomerId</td>
-                        <td>@item.Status.ToString()</td>
-                        <td>@string.Format("${0}", item.Total)</td>
+                        <td>@ECommerce.WebApp.Pages.OrdersModel.DisplayOrderStatus(item.Status)</td>
+                        <td>@string.Format("￥{0}", item.Total)</td>
                     </tr>
                 }
 

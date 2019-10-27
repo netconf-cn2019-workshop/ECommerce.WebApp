@@ -9,17 +9,17 @@
 <div class="container">
 
     <div class="jumbotron">
-        <h1 class="display-4">Welcome to e-Commerce on Containers Cloud Native Application!</h1>
-        <p class="lead">This is sample containerized application with a simple web interface backed by few microservices.</p>
+        <h1 class="display-4">欢迎来到 .NET Core 云原生电商应用！</h1>
+        <p class="lead">这个容器化的电商应用的功能很简单，界面也十分简洁，它的后端是由几个微服务构成的。</p>
         <hr class="my-4">
-        <p>The aim of this sample is to show how to design, structure and implement .NET core microservices based application that leverages Docker and an orchestrator (Kubernetes or Service Fabric) for running containers.</p>
+        <p>这个示例的目的是为了演示如何用 .NET Core，在容器化的环境中（比如，Docker 和 Kubernetes）设计、构造并实现微服务系统。</p>
     </div>
 
     @if (Model.HasError)
     {
         <div class="alert alert-danger" role="alert">
-            <h4 class="alert-heading">Error :(</h4>
-            <p>Error has occured while processing the page. Please try again.</p>
+            <h4 class="alert-heading">错误 :(</h4>
+            <p>处理页面期间发生错误，请尝试</p>
             <hr>
             <p class="mb-0">@Model.ErrorMessage</p>
         </div>
@@ -27,15 +27,15 @@
 
     @if (!Model.HasError)
     {
-        <h1>Products</h1>
+        <h1>商品</h1>
 
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">名称</th>
+                    <th scope="col">数量</th>
+                    <th scope="col">价格</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -47,10 +47,10 @@
                         <th scope="row">@item.ProductId</th>
                         <td>@item.Name</td>
                         <td>@item.Quantity</td>
-                        <td>@string.Format("${0}", item.Price)</td>
+                        <td>@string.Format("￥{0}", item.Price)</td>
                         <td>
                             <button class="btn btn-outline-warning buyButton" value="@item.ToJson()">
-                                Buy
+                                购买
                             </button>
                         </td>
                     </tr>
@@ -59,7 +59,7 @@
             </tbody>
         </table>
 
-        <p class="small text-center">Data served by service <mark>@Model.HostName</mark> identified by <mark>@Model.ServiceId</mark></p>
+        <p class="small text-center">数据来源微服务：<mark>@Model.HostName</mark>，服务 Id：<mark>@Model.ServiceId</mark></p>
     }
 
     <script src="~/js/Index.js" defer></script>

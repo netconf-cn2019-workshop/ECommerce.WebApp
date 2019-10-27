@@ -1,7 +1,7 @@
 ﻿@page
 @model ECommerce.WebApp.Pages.BasketModel
 @{
-    ViewData["Title"] = "Basket";
+    ViewData["Title"] = "购物车";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
@@ -12,23 +12,23 @@
     {
         <br />
         <div class="alert alert-secondary" role="alert">
-            <h4 class="alert-heading">Basket is empty</h4>
-            <p>Your basket is currently empty.</p>
+            <h4 class="alert-heading">购物车是空的</h4>
+            <p>购物车目前是空的</p>
         </div>
     }
 
     @if (!Model.HasError && Model.Products.Count > 0)
     {
         <br />
-        <h1>Your Basket</h1>
+        <h1>我的购物车</h1>
 
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">名称</th>
+                    <th scope="col">数量</th>
+                    <th scope="col">价格</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -40,10 +40,10 @@
                         <th scope="row">@item.ProductId</th>
                         <td>@item.Name</td>
                         <td>@item.Quantity</td>
-                        <td>@string.Format("${0}", item.Price)</td>
+                        <td>@string.Format("￥{0}", item.Price)</td>
                         <td>
                             <button class="btn btn-outline-danger removeButton" value="@item.ToJson()">
-                                Remove
+                                移除
                             </button>
                         </td>
                     </tr>
@@ -55,11 +55,11 @@
         <br />
 
         <button class="btn btn-outline-success purchaseButton">
-            PURCHASE
+            结算
         </button>
     }
 
-    <p class="small text-center">Response served by service <mark>@Model.HostName</mark> identified by <mark>@Model.ServiceId</mark></p>
+    <p class="small text-center">处理请求的微服务：<mark>@Model.HostName</mark>，服务 Id:<mark>@Model.ServiceId</mark></p>
 
     <script src="~/js/Basket.js" defer></script>
 

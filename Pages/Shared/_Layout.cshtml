@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" crossorigin="anonymous">
     
-    <title>e-Commerce on Containers</title>
+    <title>@(ViewData["Title"] ?? "基于容器的电商网站")</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">e-Commerce</a>
+        <a class="navbar-brand" href="#">.NET Core 电商</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,15 +25,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item @Model.GetActive(ECommerce.WebApp.Pages.AppPage.Index)">
-                    <a class="nav-link" href="/Index">Products <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/Index">商品 <span class="sr-only">(当前)</span></a>
                 </li>
 
                 <li class="nav-item @Model.GetActive(ECommerce.WebApp.Pages.AppPage.Basket)">
-                    <a class="nav-link" href="/Basket">Basket <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/Basket">购物车 <span class="sr-only">(当前)</span></a>
                 </li>
 
                 <li class="nav-item @Model.GetActive(ECommerce.WebApp.Pages.AppPage.Orders)">
-                    <a class="nav-link" href="/Orders">Orders <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/Orders">订单 <span class="sr-only">(当前)</span></a>
                 </li>
             </ul>
 
@@ -42,7 +42,7 @@
 
                 <form method="post" class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" asp-for="SearchText">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
                 </form>
             }
 
