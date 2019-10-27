@@ -13,14 +13,14 @@
         <br />
         <div class="alert alert-secondary" role="alert">
             <h4 class="alert-heading">购物车是空的</h4>
-            <p>购物车目前是空的</p>
+            <p>购物车目前是空的，请回到商品目录，开始购买商品。</p>
         </div>
     }
 
     @if (!Model.HasError && Model.Products.Count > 0)
     {
         <br />
-        <h1>我的购物车</h1>
+        <h1>购物车</h1>
 
         <table class="table table-hover">
             <thead class="thead-dark">
