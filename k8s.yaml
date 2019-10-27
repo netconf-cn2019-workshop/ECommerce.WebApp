@@ -3,16 +3,35 @@
 #
 # WebApp Microservice Deployment + Service
 #
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ecommerce-webapp-ingress
+  labels:
+    app: webapp
+    tier: frontend
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+  generation: 1
+spec:
+  rules:
+  - host: ecommerce-$$DEPLOY_SUFFIX.$$DNS_SUFFIX
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: webapp
+          servicePort: 80
+---
+
 kind: Service
 apiVersion: v1
 metadata:
   name: webapp
-  namespace: ecommerce
   labels:
     app: webapp
     tier: frontend
 spec:
-  type: LoadBalancer
   selector:
     app: webapp
     tier: frontend
@@ -21,12 +40,15 @@ spec:
     protocol: TCP
     port: 80
     targetPort: 80
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp
-  namespace: ecommerce
+  labels:
+    app: sales-api
+    tier: backend
 spec:
   selector:
     matchLabels:
@@ -42,7 +64,7 @@ spec:
       containers:
       - name: webapp
         image: $$REGISTRY_SERVERwebapp:$$IMAGE_VERSION
-        imagePullPolicy: $$IMAGE_PULL_POLICY
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         env:
