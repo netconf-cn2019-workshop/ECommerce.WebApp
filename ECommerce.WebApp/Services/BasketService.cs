@@ -45,6 +45,20 @@ namespace ECommerce.WebApp.Services
             var basket = serializedBasket != null ?
                 JsonConvert.DeserializeObject<List<Product>>(serializedBasket) :
                 new List<Product>();
+            
+            var serializedRemovedList = _httpContextAccessor.HttpContext.Session.GetString("Removed");
+            var removedList = serializedRemovedList != null ? 
+                JsonConvert.DeserializeObject<SortedSet<int>>(serializedRemovedList) : 
+                new SortedSet<int>();
+
+            removedList.Reverse();
+            removedList.ToList().ForEach(idx =>
+            {
+                if (idx < basket.Count)
+                {
+                    basket.RemoveAt(idx);
+                }
+            });
 
             return basket;
         }
@@ -56,19 +70,17 @@ namespace ECommerce.WebApp.Services
 
         public void RemoveFromBasket(string itemToRemove)
         {
-            
-            var serializedBasket = _httpContextAccessor.HttpContext.Session.GetString("Basket");
-            var basket = serializedBasket != null ? 
-                JsonConvert.DeserializeObject<List<Product>>(serializedBasket) : 
-                new List<Product>();
+            var serializedRemovedList = _httpContextAccessor.HttpContext.Session.GetString("Removed");
+            var removedList = serializedRemovedList != null ? 
+                JsonConvert.DeserializeObject<SortedSet<int>>(serializedRemovedList) : 
+                new SortedSet<int>();
 
-            var indexOfItem = int.Parse(itemToRemove);
-            if (basket.Count > indexOfItem)
+            var idx = int.Parse(itemToRemove);
+            if (!removedList.Contains(idx))
             {
-                basket.RemoveAt(indexOfItem);
+                removedList.Add(idx);
             }
-
-            _httpContextAccessor.HttpContext.Session.SetString("Basket", JsonConvert.SerializeObject(basket));
+            _httpContextAccessor.HttpContext.Session.SetString("Removed", JsonConvert.SerializeObject(removedList));
         }
     }
 }
