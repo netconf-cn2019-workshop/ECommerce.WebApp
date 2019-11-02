@@ -25,7 +25,7 @@ node("image-builder"){
             git branch: 'master', url: "https://github.com/netconf-cn2019-workshop/${PROJECT_NAME}.git"
         }
         stage('Package') {
-            dir("$PROJECT_NAME/$PROJECT_NAME"){
+            dir("$PROJECT_NAME"){
                 def DOCKER_REGISTRY = sh (script: "cat ../../dev-services/services/vars | grep REGISTRY_SERVER | cut -d '=' -f 2", returnStdout: true).trim() 
                 def DOCKER_REGISTRY_HOST = DOCKER_REGISTRY.split('/')[0]
                 sh "docker build . -t $DOCKER_REGISTRY$IMAGE_TAG";
