@@ -15,4 +15,8 @@
     <PackageReference Include="ECommerce.Common" Version="1.0.0" />
     <PackageReference Include="ECommerce.Services.Common" Version="1.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets" />
+  </ItemGroup>
 </Project>
