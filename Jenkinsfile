@@ -26,7 +26,7 @@ node("image-builder"){
         }
         stage('Package') {
             dir("$PROJECT_NAME"){
-                def DOCKER_REGISTRY = sh (script: "cat ../../dev-services/services/vars | grep REGISTRY_SERVER | cut -d '=' -f 2", returnStdout: true).trim() 
+                def DOCKER_REGISTRY = sh (script: "cat ../dev-services/services/vars | grep REGISTRY_SERVER | cut -d '=' -f 2", returnStdout: true).trim() 
                 def DOCKER_REGISTRY_HOST = DOCKER_REGISTRY.split('/')[0]
                 sh "docker build . -t $DOCKER_REGISTRY$IMAGE_TAG";
                 withCredentials([[ $class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerRegistryCredential', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD']]){
@@ -37,11 +37,9 @@ node("image-builder"){
         }
         stage('Deploy to dev') {
             dir('dev-services'){
-                git branch: 'master', url: 'https://github.com/netconf-cn2019-workshop/dev-services.git'
                 writeFile file:'services/service-list', text: "$PROJECT_NAME:$IMAGE_TAG"
-                sh './provision-services.sh --env dev --suffix $DEPLOY_SUFFIX';
+                sh "./provision-services.sh --env dev --suffix $DEPLOY_SUFFIX";
             }
         }
     }
 }
-
