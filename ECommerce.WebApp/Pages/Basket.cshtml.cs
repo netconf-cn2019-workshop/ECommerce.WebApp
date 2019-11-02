@@ -29,8 +29,14 @@ namespace ECommerce.WebApp.Pages
             Products = _basketService.GetProducts().ToList();
         }
 
+        [BindProperty]
+        public string ItemToRemove { get; set; }
+        
         public async Task<IActionResult> OnPostAsync()
         {
+//            _basketService.RemoveFromBasket(ItemToRemove);
+//            return RedirectToPage("/Index");
+            
             var correlationId = await _orderService.OrderBasketAsync();            
             return RedirectToPage("/Index", new { correlationId });
         }

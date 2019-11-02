@@ -12,13 +12,11 @@ var BasketPage = {
     init: function () {
 
         this.settings.removeButtons.click(function (e) {
-            e.preventDefault();
-
-            // TODO: implement remove functionality
+            var itemToRemove = document.getElementsByName('ItemToRemove')[0];
+            itemToRemove.value = e.target.value;
         });
 
         this.settings.purchaseButton.click(function (e) {
-
             // Purchase is implemented on form post
         });
     }

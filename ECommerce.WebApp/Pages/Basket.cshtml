@@ -34,26 +34,26 @@
             </thead>
             <tbody>
 
-                @foreach (var item in Model.Products)
+                @for (var idx =0; idx < Model.Products.Count; idx++)
                 {
+                    var item = Model.Products[idx];
                     <tr>
                         <th scope="row">@item.ProductId</th>
                         <td>@item.Name</td>
                         <td>@item.Quantity</td>
                         <td>@string.Format("￥{0}", item.Price)</td>
                         <td>
-                            <!-- <button class="btn btn-outline-danger removeButton" value="@item.ToJson()">
+                          <!--  <button class="btn btn-outline-danger removeButton" value="@idx">
                                 移除
-                            </button> -->
+                            </button>   -->
                         </td>
                     </tr>
                 }
-
             </tbody>
         </table>
 
         <br />
-
+        <input type="hidden" name="ItemToRemove" value="" />
         <button class="btn btn-outline-success purchaseButton">
             结算
         </button>
