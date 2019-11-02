@@ -7,6 +7,7 @@ EXPOSE 80
 FROM dotnetclub-docker.pkg.coding.net/dotnetconf/mcr/dotnet-core-sdk:2.2 AS build
 ARG PROJ_NAME
 COPY . /src/
+COPY ../NuGet.config /src/
 WORKDIR /src/
 
 RUN dotnet restore ${PROJ_NAME}.csproj
