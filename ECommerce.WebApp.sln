@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.WebApp", "ECommerce.WebApp\ECommerce.WebApp.csproj", "{E557B6EC-0EE0-49A7-AB89-175C33390015}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.WebApp.Tests", "ECommerce.WebApp.Tests\ECommerce.WebApp.Tests.csproj", "{57B6142D-378E-4933-8BE1-220C57F38DCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +15,9 @@ Global
 		{E557B6EC-0EE0-49A7-AB89-175C33390015}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E557B6EC-0EE0-49A7-AB89-175C33390015}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E557B6EC-0EE0-49A7-AB89-175C33390015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57B6142D-378E-4933-8BE1-220C57F38DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57B6142D-378E-4933-8BE1-220C57F38DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57B6142D-378E-4933-8BE1-220C57F38DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57B6142D-378E-4933-8BE1-220C57F38DCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
