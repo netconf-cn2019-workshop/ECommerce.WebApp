@@ -3,7 +3,7 @@
 #
 # WebApp Microservice Deployment + Service
 #
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: $$INGRESS_APIVERSION
 kind: Ingress
 metadata:
   name: ecommerce-webapp-ingress
