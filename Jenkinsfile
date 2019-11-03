@@ -37,8 +37,10 @@ node("image-builder"){
         }
         stage('Deploy to dev') {
             dir('dev-services'){
-                writeFile file:'services/service-list', text: "$PROJECT_NAME:$IMAGE_TAG"
-                sh "./provision-services.sh --env dev --suffix $DEPLOY_SUFFIX";
+                writeFile file:'./services/service-list', text: "$PROJECT_NAME:$IMAGE_TAG"
+                sh "sed -i 's/DNS_SUFFIX=.*/DNS_SUFFIX=$dns_suffix/g' ./services/vars"
+                sh '/var/init/init-in-k8s.sh'
+                sh './provision-services.sh --env dev --suffix $DEPLOY_SUFFIX'
             }
         }
     }
