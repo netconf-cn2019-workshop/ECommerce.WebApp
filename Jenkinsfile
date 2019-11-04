@@ -1,11 +1,12 @@
 
 def PROJECT_NAME = "ECommerce.WebApp"
+def REPO_BASE = "https://github.com/netconf-cn2019-workshop"
 def IMAGE_NAME = PROJECT_NAME.substring("ECommerce.".length()).toLowerCase().replace(".", "-")
 def IMAGE_TAG="$IMAGE_NAME:$DEPLOY_SUFFIX-build-$BUILD_NUMBER"
 node("dotnet") {
     dir("$PROJECT_NAME"){
         stage("Fetch Code") {
-            git branch: 'master', url: "https://github.com/netconf-cn2019-workshop/${PROJECT_NAME}.git"
+            git branch: 'master', url: "$REPO_BASE/${PROJECT_NAME}.git"
         }
         stage('Build App') {
             sh 'dotnet build';
@@ -19,10 +20,10 @@ node("dotnet") {
 node("image-builder"){
     container('docker'){
         dir('dev-services'){
-            git branch: 'master', url: 'https://github.com/netconf-cn2019-workshop/dev-services.git'
+            git branch: 'master', url: '$REPO_BASE/dev-services.git'
         }
         dir("$PROJECT_NAME"){
-            git branch: 'master', url: "https://github.com/netconf-cn2019-workshop/${PROJECT_NAME}.git"
+            git branch: 'master', url: "$REPO_BASE/${PROJECT_NAME}.git"
         }
         stage('Package') {
             dir("$PROJECT_NAME"){

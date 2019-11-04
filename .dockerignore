@@ -1,4 +1,7 @@
 .dockerignore
+Dockerfile
+Jenkinsfile
+k8s.yaml
 .env
 .git
 .gitignore
